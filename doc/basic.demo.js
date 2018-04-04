@@ -1,8 +1,9 @@
 var hlog = require('history-log')
-
+window.historyLogDebug = true
+// nodejs: global.historyLogDebug = true
 var log = hlog('some')
 log.add('message 1')
-log.add({name: 'nimo'})
+    .add({name: 'nimo'})
 setTimeout(function () {
     log.add('message 3')
     log.end()
