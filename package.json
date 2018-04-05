@@ -1,9 +1,9 @@
 {
-    "name": "history-log",
+    "name": "async-console",
     "main": "lib/index.js",
     "version": "0.2.0",
-    "description": "console.log history,faster debugging code.",
-    "keywords": "",
+    "description": "console.log async,faster debugging code.",
+    "keywords": "console,log,delay log,async",
     "scripts": {
         "dev": "rm -rf output && fis3 release -w -d ./output -r ./ -f compile/fis-conf.js",
         "s": "node ./compile/open && node ./compile/server",
@@ -16,7 +16,7 @@
         "test:ci": "./node_modules/karma/bin/karma start ./compile/karma.ci.js"
     },
     "$username": "onface",
-    "$repository": "history-log",
+    "$repository": "async-console",
     "dependencies": {
         "fecha": "^2.3.3",
         "safe-extend": "^3.0.3"
