@@ -75,26 +75,39 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var ac = __webpack_require__("./lib/index.js");(typeof global === 'undefined' ? 'undefined' : _typeof(global)) ? global.acDebug = true : window.acDebug = true;
 // https://nodejs.org/api/globals.html
-
-function query(attrs) {
+function query(attrs, data) {
     ac.group('query.js');
-    ac.$input('query', attrs);
-    function getQueryString(attrs) {
-        return attrs.join(',');
+    ac.$input('query', attrs, data);
+    function getQueryArray(attrs) {
+        return attrs.split(',');
     }
-    ac.group('getQueryString');
-    ac.$input('getQueryString', attrs);
-    var queryString = getQueryString(attrs);
-    ac.$output('getQueryString', queryString);
+
+    ac.group('getQueryArray');
+    ac.$input('getQueryArray', attrs);
+    var queryArray = getQueryArray(attrs);
+    ac.$output('getQueryArray', queryArray);
     ac.groupEnd();
-    // ac.$show()
-    setTimeout(function () {
-        ac.info('You can choose to asynchronous or synchronous');
-        ac.$show();
-    }, 100);
+
+    ac.groupCollapsed('queryArray.forEach(setKey)');
+    var output = {};
+    queryArray.forEach(function setKey(key) {
+        ac.log('output["' + key + '"] = ', '"' + data[key] + '"');
+        output[key] = data[key];
+    });
+    ac.groupEnd();
+
+    ac.$output('query', output);
+    ac.$show();
+    return output;
 }
 
-query(['a', 'b', 'c']);
+query('a,b,c', {
+    a: 'nimo',
+    b: 'nico',
+    c: 'tim',
+    d: 'bob',
+    e: 'lisa'
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -150,10 +163,16 @@ var aconsole = new Proxy({
         }
 
         var functionName = arg.shift();
+        function stringFormat(item) {
+            if (typeof item === 'string') {
+                item = '"' + item + '"';
+            }
+            return item;
+        }
         self._data.push({
             key: 'log',
             time: new Date().getTime(),
-            arguments: [functionName + '('].concat(arg.map(clone)).concat(')')
+            arguments: [functionName + '('].concat(arg.map(clone).map(stringFormat)).concat(')')
         });
     },
     $output: function $output(functionName, data) {
@@ -164,7 +183,7 @@ var aconsole = new Proxy({
         self._data.push({
             key: 'log',
             time: new Date().getTime(),
-            arguments: [functionName + '(...) // return '].concat(data)
+            arguments: [functionName + '(...) // return '].concat([data])
         });
     }
 }, {

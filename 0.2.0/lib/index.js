@@ -37,10 +37,16 @@ var aconsole = new Proxy(
         $input: function (...arg) {
             const self = this
             const functionName = arg.shift()
+            function stringFormat (item) {
+                if (typeof item === 'string') {
+                    item = `"${item}"`
+                }
+                return item
+            }
             self._data.push({
                 key: 'log',
                 time: new Date().getTime(),
-                arguments: [`${functionName}(`].concat(arg.map(clone)).concat(`)`)
+                arguments: [`${functionName}(`].concat(arg.map(clone).map(stringFormat)).concat(`)`)
             })
         },
         $output: function (functionName, data) {
@@ -51,7 +57,7 @@ var aconsole = new Proxy(
             self._data.push({
                 key: 'log',
                 time: new Date().getTime(),
-                arguments: [`${functionName}(...) // return `].concat(data)
+                arguments: [`${functionName}(...) // return `].concat([data])
             })
         }
     }

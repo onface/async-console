@@ -84,9 +84,9 @@
                                 <div id="basic-demo" ></div>
                             </div>
                             <div class="face-one-code-info">
-                                <div class="face-one-code-info-title">基础使用</div>
+                                <div class="face-one-code-info-title">示例</div>
                                 <div class="face-one-code-info-desc">
-                                    <p><strong>markdown</strong></p>
+                                    <p>async-console 适合调试程序流程中数据变动复杂的情况，虽然需要写很多 log 但是能快速了解代码过程中数据的变动。</p>
                                 </div>
                                 <span class="face-one-code-info-switchCode fi fi-code"></span>
                             </div>
@@ -98,27 +98,42 @@
                             <pre><code class="lang-js"><span class="hljs-keyword">var</span> ac = <span class="hljs-keyword">require</span>(<span class="hljs-string">'async-console'</span>)
 ;(typeof <span class="hljs-keyword">global</span>?<span class="hljs-keyword">global</span>.acDebug = <span class="hljs-keyword">true</span>:window.acDebug = <span class="hljs-keyword">true</span>)
 <span class="hljs-comment">// https://nodejs.org/api/globals.html</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span><span class="hljs-params">(attrs)</span> </span>{
-    ac.group(<span class="hljs-string">'query.js'</span>)
-    ac.$input(<span class="hljs-string">'query'</span>, attrs)
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQueryString</span><span class="hljs-params">(attrs)</span> </span>{
-        <span class="hljs-keyword">return</span> attrs.join(<span class="hljs-string">','</span>)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span><span class="hljs-params">(attrs, data)</span> </span>{
+        ac.group(<span class="hljs-string">'query.js'</span>)
+        ac.$input(<span class="hljs-string">'query'</span>, attrs, data)
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQueryArray</span><span class="hljs-params">(attrs)</span> </span>{
+        <span class="hljs-keyword">return</span> attrs.split(<span class="hljs-string">','</span>)
     }
-    ac.group(<span class="hljs-string">'getQueryString'</span>)
-    ac.$input(<span class="hljs-string">'getQueryString'</span>, attrs)
-    <span class="hljs-keyword">var</span> queryString = getQueryString(attrs)
-    ac.$output(<span class="hljs-string">'getQueryString'</span>, queryString)
-    ac.groupEnd()
-    <span class="hljs-comment">// ac.$show()</span>
-    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-        ac.info(<span class="hljs-string">'You can choose to asynchronous or synchronous'</span>)
-        ac.$show()
-    }, <span class="hljs-number">100</span>)
 
+        ac.group(<span class="hljs-string">'getQueryArray'</span>)
+        ac.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
+    <span class="hljs-keyword">var</span> queryArray = getQueryArray(attrs)
+        ac.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
+        ac.groupEnd()
+
+        ac.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
+    <span class="hljs-keyword">var</span> output = {}
+    queryArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setKey</span><span class="hljs-params">(key)</span> </span>{
+        ac.log(`output[<span class="hljs-string">"${key}"</span>] = `, `<span class="hljs-string">"${data[key]}"</span>`)
+        output[key] = data[key]
+    })
+        ac.groupEnd()
+
+        ac.$output(<span class="hljs-string">'query'</span>, output)
+        ac.$show()
+    <span class="hljs-keyword">return</span> output
 }
 
-query([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>])
+query(
+    <span class="hljs-string">'a,b,c'</span>,
+    {
+        a: <span class="hljs-string">'nimo'</span>,
+        b: <span class="hljs-string">'nico'</span>,
+        c: <span class="hljs-string">'tim'</span>,
+        d: <span class="hljs-string">'bob'</span>,
+        e: <span class="hljs-string">'lisa'</span>
+    }
+)
 
 </code></pre>
                         </div>
