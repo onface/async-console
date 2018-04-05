@@ -1,24 +1,39 @@
 var ac = require('async-console')
 ;(typeof global?global.acDebug = true:window.acDebug = true)
 // https://nodejs.org/api/globals.html
-
-function query(attrs) {
-    ac.group('query.js')
-    ac.$input('query', attrs)
-    function getQueryString(attrs) {
-        return attrs.join(',')
+function query(attrs, data) {
+        ac.group('query.js')
+        ac.$input('query', attrs, data)
+    function getQueryArray(attrs) {
+        return attrs.split(',')
     }
-    ac.group('getQueryString')
-    ac.$input('getQueryString', attrs)
-    var queryString = getQueryString(attrs)
-    ac.$output('getQueryString', queryString)
-    ac.groupEnd()
-    // ac.$show()
-    setTimeout(function () {
-        ac.info('You can choose to asynchronous or synchronous')
-        ac.$show()
-    }, 100)
 
+        ac.group('getQueryArray')
+        ac.$input('getQueryArray', attrs)
+    var queryArray = getQueryArray(attrs)
+        ac.$output('getQueryArray', queryArray)
+        ac.groupEnd()
+
+        ac.groupCollapsed('queryArray.forEach(setKey)')
+    var output = {}
+    queryArray.forEach(function setKey(key) {
+        ac.log(`output["${key}"] = `, `"${data[key]}"`)
+        output[key] = data[key]
+    })
+        ac.groupEnd()
+
+        ac.$output('query', output)
+        ac.$show()
+    return output
 }
 
-query(['a', 'b', 'c'])
+query(
+    'a,b,c',
+    {
+        a: 'nimo',
+        b: 'nico',
+        c: 'tim',
+        d: 'bob',
+        e: 'lisa'
+    }
+)
