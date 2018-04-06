@@ -19,6 +19,7 @@
         -->
     </div>
 </div>
+<img src="./doc/example.gif" style="display:block;margin-left:auto;margin-right:auto;width:30em;margin-top:1em;" />
 <div class="face-one-feature">
     <table style="width:100%;" data-comments="In order to github typesetting so use the table tag" >
         <tr>
