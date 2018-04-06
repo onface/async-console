@@ -1,29 +1,29 @@
-var ac = require('async-console')
-;(typeof global?global.acDebug = true:window.acDebug = true)
+var dc = require('delay-console')
+;(typeof global?global.dcDebug = true:window.dcDebug = true)
 // https://nodejs.org/api/globals.html
 function query(attrs, data) {
-        ac.group('query.js')
-        ac.$input('query', attrs, data)
+        dc.group('query.js')
+        dc.$input('query', attrs, data)
     function getQueryArray(attrs) {
         return attrs.split(',')
     }
 
-        ac.group('getQueryArray')
-        ac.$input('getQueryArray', attrs)
+        dc.group('getQueryArray')
+        dc.$input('getQueryArray', attrs)
     var queryArray = getQueryArray(attrs)
-        ac.$output('getQueryArray', queryArray)
-        ac.groupEnd()
+        dc.$output('getQueryArray', queryArray)
+        dc.groupEnd()
 
-        ac.groupCollapsed('queryArray.forEach(setKey)')
+        dc.groupCollapsed('queryArray.forEach(setKey)')
     var output = {}
     queryArray.forEach(function setKey(key) {
-        ac.log(`output["${key}"] = `, `"${data[key]}"`)
+        dc.log(`output["${key}"] = `, `"${data[key]}"`)
         output[key] = data[key]
     })
-        ac.groupEnd()
+        dc.groupEnd()
 
-        ac.$output('query', output)
-        ac.$show()
+        dc.$output('query', output)
+        dc.$show()
     return output
 }
 
