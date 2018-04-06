@@ -77,18 +77,18 @@
 <div class="face-one-layout-cnt">
 <div id="face-one-cnt" class="face-one-cnt markdown-body">
 <div id="face-one-sidebar" class="face-one-sidebar"></div>
-<h1 id="文档" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/history-log/#文档"><span class="markrun-anchor-link"></span></a>文档</h1>
-    <div class="face-one-code  face-one-code--open ">
+<h1 id="文档" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/delay-console/#文档"><span class="markrun-anchor-link"></span></a>文档</h1>
+    <div class="face-one-code  face-one-code--open  face-one-code--horiz">
                         <div class="face-one-code-F-view">
                             <div class="face-one-code-example">
-                                <div id="basic-demo" ></div>
+                                <img src="example.gif" /><img src="example-code.gif" />
                             </div>
                             <div class="face-one-code-info">
-                                <div class="face-one-code-info-title">示例</div>
+                                <div class="face-one-code-info-title">$show()</div>
                                 <div class="face-one-code-info-desc">
                                     <p>所有 <code>log</code> 在 <code>$show()</code>调用时才会输出，这样能让日志更加易于阅读。甚至可以延迟到所有代码执行结束再输出。</p>
                                 </div>
-                                <span class="face-one-code-info-switchCode fi fi-code"></span>
+                                <span class="face-one-code-info-switchCode fi fi-ellipsis"></span>
                             </div>
                         </div>
                         <div class="face-one-code-source">
@@ -99,31 +99,37 @@
 ;(typeof <span class="hljs-keyword">global</span>?<span class="hljs-keyword">global</span>.dcDebug = <span class="hljs-keyword">true</span>:window.dcDebug = <span class="hljs-keyword">true</span>)
 <span class="hljs-comment">// https://nodejs.org/api/globals.html</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span><span class="hljs-params">(attrs, data)</span> </span>{
-        dc.group(<span class="hljs-string">'query.js'</span>)
-        dc.$input(<span class="hljs-string">'query'</span>, attrs, data)
+    <span class="hljs-comment">/**/</span>
+    dc.group(<span class="hljs-string">'query.js'</span>)
+    dc.$input(<span class="hljs-string">'query'</span>, attrs, data)
+    <span class="hljs-comment">/**/</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQueryArray</span><span class="hljs-params">(attrs)</span> </span>{
         <span class="hljs-keyword">return</span> attrs.split(<span class="hljs-string">','</span>)
     }
-
-        dc.group(<span class="hljs-string">'getQueryArray'</span>)
-        dc.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
+    <span class="hljs-comment">/**/</span>
+    dc.group(<span class="hljs-string">'getQueryArray'</span>)
+    dc.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
+    <span class="hljs-comment">/**/</span>
     <span class="hljs-keyword">var</span> queryArray = getQueryArray(attrs)
-        dc.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
-        dc.groupEnd()
-
-        dc.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
+    <span class="hljs-comment">/**/</span>
+    dc.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
+    dc.groupEnd()
+    dc.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
+    <span class="hljs-comment">/**/</span>
     <span class="hljs-keyword">var</span> output = {}
     queryArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setKey</span><span class="hljs-params">(key)</span> </span>{
+        <span class="hljs-comment">/**/</span>
         dc.log(`output[<span class="hljs-string">"${key}"</span>] = `, `<span class="hljs-string">"${data[key]}"</span>`)
+        <span class="hljs-comment">/**/</span>
         output[key] = data[key]
     })
-        dc.groupEnd()
-
-        dc.$output(<span class="hljs-string">'query'</span>, output)
-        dc.$show()
+    <span class="hljs-comment">/**/</span>
+    dc.groupEnd()
+    dc.$output(<span class="hljs-string">'query'</span>, output)
+    dc.$show()
+    <span class="hljs-comment">/**/</span>
     <span class="hljs-keyword">return</span> output
 }
-
 query(
     <span class="hljs-string">'a,b,c'</span>,
     {
