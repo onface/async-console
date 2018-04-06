@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/async-console/0.2.0";
+/******/ 	__webpack_require__.p = "/delay-console/0.2.0";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -73,31 +73,31 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var ac = __webpack_require__("./lib/index.js");(typeof global === 'undefined' ? 'undefined' : _typeof(global)) ? global.acDebug = true : window.acDebug = true;
+var dc = __webpack_require__("./lib/index.js");(typeof global === 'undefined' ? 'undefined' : _typeof(global)) ? global.dcDebug = true : window.dcDebug = true;
 // https://nodejs.org/api/globals.html
 function query(attrs, data) {
-    ac.group('query.js');
-    ac.$input('query', attrs, data);
+    dc.group('query.js');
+    dc.$input('query', attrs, data);
     function getQueryArray(attrs) {
         return attrs.split(',');
     }
 
-    ac.group('getQueryArray');
-    ac.$input('getQueryArray', attrs);
+    dc.group('getQueryArray');
+    dc.$input('getQueryArray', attrs);
     var queryArray = getQueryArray(attrs);
-    ac.$output('getQueryArray', queryArray);
-    ac.groupEnd();
+    dc.$output('getQueryArray', queryArray);
+    dc.groupEnd();
 
-    ac.groupCollapsed('queryArray.forEach(setKey)');
+    dc.groupCollapsed('queryArray.forEach(setKey)');
     var output = {};
     queryArray.forEach(function setKey(key) {
-        ac.log('output["' + key + '"] = ', '"' + data[key] + '"');
+        dc.log('output["' + key + '"] = ', '"' + data[key] + '"');
         output[key] = data[key];
     });
-    ac.groupEnd();
+    dc.groupEnd();
 
-    ac.$output('query', output);
-    ac.$show();
+    dc.$output('query', output);
+    dc.$show();
     return output;
 }
 
@@ -189,7 +189,7 @@ var aconsole = new Proxy({
 }, {
     get: function get(target, key, receiver) {
         global = typeof global === 'undefined' ? window : global;
-        if (!global.acDebug) {
+        if (!global.dcDebug) {
             return function empty() {};
         }
         var self = receiver;

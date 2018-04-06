@@ -1,5 +1,5 @@
 {
-    "name": "async-console",
+    "name": "delay-console",
     "main": "lib/index.js",
     "version": "0.2.0",
     "description": "console.log async,faster debugging code.",
@@ -16,7 +16,7 @@
         "test:ci": "./node_modules/karma/bin/karma start ./compile/karma.ci.js"
     },
     "$username": "onface",
-    "$repository": "async-console",
+    "$repository": "delay-console",
     "dependencies": {
         "fecha": "^2.3.3",
         "safe-extend": "^3.0.3"

@@ -86,7 +86,7 @@
                             <div class="face-one-code-info">
                                 <div class="face-one-code-info-title">示例</div>
                                 <div class="face-one-code-info-desc">
-                                    <p>async-console 适合调试程序流程中数据变动复杂的情况，虽然需要写很多 log 但是能快速了解代码过程中数据的变动。</p>
+                                    <p>所有 <code>log</code> 在 <code>$show()</code>调用时才会输出，这样能让日志更加易于阅读。甚至可以延迟到所有代码执行结束再输出。</p>
                                 </div>
                                 <span class="face-one-code-info-switchCode fi fi-code"></span>
                             </div>
@@ -95,32 +95,32 @@
                             <div class="face-one-code-source-tool">
                                 <span class="face-one-code-source-tool-copy fi fi-files-o"></span>
                             </div>
-                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> ac = <span class="hljs-keyword">require</span>(<span class="hljs-string">'async-console'</span>)
-;(typeof <span class="hljs-keyword">global</span>?<span class="hljs-keyword">global</span>.acDebug = <span class="hljs-keyword">true</span>:window.acDebug = <span class="hljs-keyword">true</span>)
+                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> dc = <span class="hljs-keyword">require</span>(<span class="hljs-string">'delay-console'</span>)
+;(typeof <span class="hljs-keyword">global</span>?<span class="hljs-keyword">global</span>.dcDebug = <span class="hljs-keyword">true</span>:window.dcDebug = <span class="hljs-keyword">true</span>)
 <span class="hljs-comment">// https://nodejs.org/api/globals.html</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span><span class="hljs-params">(attrs, data)</span> </span>{
-        ac.group(<span class="hljs-string">'query.js'</span>)
-        ac.$input(<span class="hljs-string">'query'</span>, attrs, data)
+        dc.group(<span class="hljs-string">'query.js'</span>)
+        dc.$input(<span class="hljs-string">'query'</span>, attrs, data)
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQueryArray</span><span class="hljs-params">(attrs)</span> </span>{
         <span class="hljs-keyword">return</span> attrs.split(<span class="hljs-string">','</span>)
     }
 
-        ac.group(<span class="hljs-string">'getQueryArray'</span>)
-        ac.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
+        dc.group(<span class="hljs-string">'getQueryArray'</span>)
+        dc.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
     <span class="hljs-keyword">var</span> queryArray = getQueryArray(attrs)
-        ac.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
-        ac.groupEnd()
+        dc.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
+        dc.groupEnd()
 
-        ac.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
+        dc.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
     <span class="hljs-keyword">var</span> output = {}
     queryArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setKey</span><span class="hljs-params">(key)</span> </span>{
-        ac.log(`output[<span class="hljs-string">"${key}"</span>] = `, `<span class="hljs-string">"${data[key]}"</span>`)
+        dc.log(`output[<span class="hljs-string">"${key}"</span>] = `, `<span class="hljs-string">"${data[key]}"</span>`)
         output[key] = data[key]
     })
-        ac.groupEnd()
+        dc.groupEnd()
 
-        ac.$output(<span class="hljs-string">'query'</span>, output)
-        ac.$show()
+        dc.$output(<span class="hljs-string">'query'</span>, output)
+        dc.$show()
     <span class="hljs-keyword">return</span> output
 }
 
@@ -192,7 +192,7 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 Github
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/async-console" class="face-one-foot-group-item-link">async-console</a>
+                <a href="https://github.com/onface/delay-console" class="face-one-foot-group-item-link">delay-console</a>
                 - 项目源码
             </div>
         </div>
@@ -220,10 +220,10 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
                 社区
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/async-console/issues" class="face-one-foot-group-item-link">Github issues</a>
+                <a href="https://github.com/onface/delay-console/issues" class="face-one-foot-group-item-link">Github issues</a>
             </div>
             <div class="face-one-foot-group-item">
-                <a href="https://github.com/onface/async-console/issues/new" class="face-one-foot-group-item-link">提交bug</a>
+                <a href="https://github.com/onface/delay-console/issues/new" class="face-one-foot-group-item-link">提交bug</a>
             </div>
         </div>
         <div class="face-one-foot-copyright">
