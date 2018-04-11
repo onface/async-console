@@ -29,6 +29,7 @@ function query(attrs, data) {
     /**/
     dc.groupEnd()
     dc.$output('query', output)
+    dc.groupEnd()
     dc.$show()
     /**/
     return output
@@ -43,3 +44,24 @@ query(
         e: 'lisa'
     }
 )
+
+dc.groupCollapsed('more options')
+dc.$json(
+    'object & array',
+    {
+        name: 'nimo',
+        skills: [
+            'html',
+            'css',
+            'js'
+        ]
+    },
+    [
+        'abc',
+        '123',
+        '一二三四'
+    ]
+)
+dc.$inputJson('query', ['abc', '1234'], {name: 'nimo'})
+dc.$outputJson('query', {some: '123'})
+dc.$show()
