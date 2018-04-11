@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="theme/face/face.css">
 <meta name="keywords" content="console,log,delay log,async">
-<meta name="description" content="文档">
-<title>文档</title>
+<meta name="description" content="指引">
+<title>指引</title>
 </head>
 <body>
 <div class="face-one-head">
@@ -77,96 +77,11 @@
 <div class="face-one-layout-cnt">
 <div id="face-one-cnt" class="face-one-cnt markdown-body">
 <div id="face-one-sidebar" class="face-one-sidebar"></div>
-<h1 id="文档" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/delay-console/#文档"><span class="markrun-anchor-link"></span></a>文档</h1>
-    <div class="face-one-code  face-one-code--open  face-one-code--horiz">
-                        <div class="face-one-code-F-view">
-                            <div class="face-one-code-example">
-                                <img src="example.gif" /><img src="example-code.gif" />
-                            </div>
-                            <div class="face-one-code-info">
-                                <div class="face-one-code-info-title">$show()</div>
-                                <div class="face-one-code-info-desc">
-                                    <p>所有 <code>log</code> 在 <code>$show()</code>调用时才会输出，这样能让日志更加易于阅读。甚至可以延迟到所有代码执行结束再输出。</p>
-                                </div>
-                                <span class="face-one-code-info-switchCode fi fi-ellipsis"></span>
-                            </div>
-                        </div>
-                        <div class="face-one-code-source">
-                            <div class="face-one-code-source-tool">
-                                <span class="face-one-code-source-tool-copy fi fi-files-o"></span>
-                            </div>
-                            <pre><code class="lang-js"><span class="hljs-keyword">var</span> dc = <span class="hljs-keyword">require</span>(<span class="hljs-string">'delay-console'</span>)
-;(typeof <span class="hljs-keyword">global</span>?<span class="hljs-keyword">global</span>.dcDebug = <span class="hljs-keyword">true</span>:window.dcDebug = <span class="hljs-keyword">true</span>)
-<span class="hljs-comment">// https://nodejs.org/api/globals.html</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span><span class="hljs-params">(attrs, data)</span> </span>{
-    <span class="hljs-comment">/**/</span>
-    dc.group(<span class="hljs-string">'query.js'</span>)
-    dc.$input(<span class="hljs-string">'query'</span>, attrs, data)
-    <span class="hljs-comment">/**/</span>
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQueryArray</span><span class="hljs-params">(attrs)</span> </span>{
-        <span class="hljs-keyword">return</span> attrs.split(<span class="hljs-string">','</span>)
-    }
-    <span class="hljs-comment">/**/</span>
-    dc.group(<span class="hljs-string">'getQueryArray'</span>)
-    dc.$input(<span class="hljs-string">'getQueryArray'</span>, attrs)
-    <span class="hljs-comment">/**/</span>
-    <span class="hljs-keyword">var</span> queryArray = getQueryArray(attrs)
-    <span class="hljs-comment">/**/</span>
-    dc.$output(<span class="hljs-string">'getQueryArray'</span>, queryArray)
-    dc.groupEnd()
-    dc.groupCollapsed(<span class="hljs-string">'queryArray.forEach(setKey)'</span>)
-    <span class="hljs-comment">/**/</span>
-    <span class="hljs-keyword">var</span> output = {}
-    queryArray.<span class="hljs-keyword">forEach</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setKey</span><span class="hljs-params">(key)</span> </span>{
-        <span class="hljs-comment">/**/</span>
-        dc.log(`output[<span class="hljs-string">"${key}"</span>] = `, `<span class="hljs-string">"${data[key]}"</span>`)
-        <span class="hljs-comment">/**/</span>
-        output[key] = data[key]
-    })
-    <span class="hljs-comment">/**/</span>
-    dc.groupEnd()
-    dc.$output(<span class="hljs-string">'query'</span>, output)
-    dc.groupEnd()
-    dc.$show()
-    <span class="hljs-comment">/**/</span>
-    <span class="hljs-keyword">return</span> output
-}
-query(
-    <span class="hljs-string">'a,b,c'</span>,
-    {
-        a: <span class="hljs-string">'nimo'</span>,
-        b: <span class="hljs-string">'nico'</span>,
-        c: <span class="hljs-string">'tim'</span>,
-        d: <span class="hljs-string">'bob'</span>,
-        e: <span class="hljs-string">'lisa'</span>
-    }
-)
-
-dc.groupCollapsed(<span class="hljs-string">'more options'</span>)
-dc.$json(
-    <span class="hljs-string">'object &amp; array'</span>,
-    {
-        name: <span class="hljs-string">'nimo'</span>,
-        skills: [
-            <span class="hljs-string">'html'</span>,
-            <span class="hljs-string">'css'</span>,
-            <span class="hljs-string">'js'</span>
-        ]
-    },
-    [
-        <span class="hljs-string">'abc'</span>,
-        <span class="hljs-string">'123'</span>,
-        <span class="hljs-string">'一二三四'</span>
-    ]
-)
-dc.$inputJson(<span class="hljs-string">'query'</span>, [<span class="hljs-string">'abc'</span>, <span class="hljs-string">'1234'</span>], {name: <span class="hljs-string">'nimo'</span>})
-dc.$outputJson(<span class="hljs-string">'query'</span>, {some: <span class="hljs-string">'123'</span>})
-dc.$show()
-
-</code></pre>
-                        </div>
-                        
-                    </div></div>
+<h1 id="指引" ><a class="markrun-anchor" href="../Users/nimo/Documents/git/delay-console/#指引"><span class="markrun-anchor-link"></span></a>指引</h1><blockquote>
+<p>使用一个组件或模块之前，应当知道它能解决的问题是什么，不能解决的问题是什么。使用的最佳实践是什么？</p>
+</blockquote>
+<p><code>delay-console</code>适合调试程序流程中数据变动复杂的情况，虽然需要写很多 log 但是能快速了解代码过程中数据的变动。</p>
+<p>当我们写异步代码时 <code>delay-console</code> 可以解决 <code>console</code> 的视觉排序错乱的问题。</p></div>
 </div>
 </div>
 </div>
@@ -265,7 +180,5 @@ Array.from(document.querySelectorAll('.face-one-nav-item-group-item')).forEach(f
 <script src="theme/jquery.js"></script>
 <script>delete window.$</script>
 <script src="theme/face/face.js" ></script>
-<script data-markrun-lastrun="true">
-                        document.write('<scri' + 'pt src="./basic.demo.js?v=0.3.0"' + '" ></sc' + 'ript>')
-                        </script></body>
+</body>
 </html>
