@@ -1,7 +1,7 @@
 {
     "name": "delay-console",
     "main": "lib/index.js",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "console.log async,faster debugging code.",
     "keywords": "console,log,delay log,async",
     "scripts": {

@@ -30,7 +30,6 @@ function query(attrs, data) {
     dc.groupEnd()
     dc.$output('query', output)
     dc.groupEnd()
-    dc.$show()
     /**/
     return output
 }
@@ -64,4 +63,4 @@ dc.$json(
 )
 dc.$inputJson('query', ['abc', '1234'], {name: 'nimo'})
 dc.$outputJson('query', {some: '123'})
-dc.$show()
+dc.groupEnd()
